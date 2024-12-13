@@ -1,0 +1,105 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; /* Stack the title and board vertically */
+    height: 100vh;
+    margin: 0;
+    background-color: #f9f6f2;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    margin-bottom: 20px; /* Space between the title and the board */
+    font-size: 48px;
+    font-weight: bold;
+    color: #776e65;
+    text-align: center; /* Ensure the title text is centered */
+}
+
+/* Center the game board in the middle of the screen */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    margin: 0;
+    background-color: #f9f6f2; /* Soft background color */
+    font-family: Arial, sans-serif; /* Clean and readable font */
+}
+
+/* Style the game board */
+#board {
+    display: grid;
+    grid-template-columns: repeat(4, 100px); /* 4 columns */
+    grid-template-rows: repeat(4, 100px);   /* 4 rows */
+    grid-gap: 10px; /* Space between tiles */
+    background-color: #bbada0; /* Board background color */
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 5.0); /* Subtle shadow for depth */
+}
+
+/* Style the individual tiles */
+.tile {
+    width: 100px;
+    height: 100px;
+    background-color: #cdc1b4; /* Default tile background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 24px;
+    color: #776e65;
+    font-weight: bold;
+    transition: all 0.2s ease-in-out; /* Smooth transitions for visual effects */
+}
+
+@keyframes merge {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.tile.merged {
+    animation: merge 0.2s ease-out;
+}
+
+/* Add slide-in animation */
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%); /* Start off-screen to the left */
+    }
+    100% {
+        transform: translateX(0); /* Slide to original position */
+    }
+}
+
+h1 {
+    animation: slideIn 1s ease-out; /* Apply slide-in animation */
+    font-size: 48px;
+    font-weight: bold;
+    color: #776e65;
+    text-align: center;
+}
+
+.tile[data-value="2"] { background-color: #8bc898; }
+.tile[data-value="4"] { background-color: #4f8f8c; }
+.tile[data-value="8"] { background-color: #f2b179; }
+.tile[data-value="16"] {background-color: gold; }
+.tile[data-value="32"] {background-color: khaki; }
+.tile[data-value="64"] {background-color: deepskyblue; }
+.tile[data-vaule="128"] {background-color: rgb(240, 128, 128); }
+.tile[data-value="256"] {background-color: olivedrab; }
+.tile[data-value="512"] {background-color: peru; }
+.tile[data-vaule="1024"] {background-color: powderblue; }
+.tile[data-vaule="2048"] {background-color: saddlebrown; }
