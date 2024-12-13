@@ -55,23 +55,27 @@ body {
     transition: all 0.2s ease-in-out; /* Smooth transitions for visual effects */
 }
 
-@keyframes merge {
+@keyframes splash {
     0% {
         transform: scale(1);
         opacity: 1;
     }
     50% {
-        transform: scale(1.2);
+        transform: scale(1.3);
         opacity: 0.8;
     }
-    100% {
-        transform: scale(1);
+    75% {
+        transform: scale(0.8);
         opacity: 1;
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1
     }
 }
 
 .tile.merged {
-    animation: merge 0.2s ease-out;
+    animation: splash 0.4s ease-out;
 }
 
 /* Add slide-in animation */

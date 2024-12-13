@@ -1,18 +1,26 @@
 const board = document.getElementById('board');
 let tiles = Array(4).fill(null).map(() => Array(4).fill(0)); // 4x4 grid initialized with 0s
+let tileElements = []; // To store tile div elements for animation
 
 // Draw the board
 function drawBoard() {
     board.innerHTML = ''; // Clear the current board
-    tiles.forEach(row => {
-        row.forEach(value => {
+    tileElements = []; // Reset tile elements array
+    
+    tiles.forEach((row, r) => {
+        row.forEach((value, c) => {
             const tile = document.createElement('div');
             tile.classList.add('tile');
+            tile.dataset.row = r;
+            tile.dataset.col = c;
+
             if (value !== 0) {
                 tile.textContent = value; // Add value to the tile
                 tile.dataset.value = value; // Set the value as a data attribute for styling
             }
+
             board.appendChild(tile);
+            tileElements.push(tile); // Store the tile div in tileElements array
         });
     });
 }
@@ -100,6 +108,30 @@ function move(direction) {
         spawnTile(); // Add a new tile only if the board state changes
     }
     drawBoard(); // Redraw the board
+    applyMergeAnimation(); // Apply merge animation to the number tiles
+}
+
+// Apply merge animation to number tiles only (those that have values)
+function applyMergeAnimation() {
+    // Ensure we only apply the merge animation to tiles with values
+    tileElements.forEach(tile => {
+        if (tile.textContent !== "0") { // Apply animation only for tiles that have a number
+            tile.classList.remove('merged'); // Remove any previous merge effects
+        }
+    });
+
+    // Allow the board to update before applying the merge animation
+    setTimeout(() => {
+        tileElements.forEach(tile => {
+            // Only apply 'merged' class to tiles that have changed
+            const newValue = tile.dataset.value;
+            const oldValue = tile.textContent;
+
+            if (newValue !== oldValue) {
+                tile.classList.add('merged');
+            }
+        });
+    }, 50); // Small delay to allow board to update before applying the animation
 }
 
 // Listen for arrow key presses
